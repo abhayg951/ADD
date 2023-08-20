@@ -4,12 +4,23 @@
         "src": "ADD/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb" , "runtime": "python3.9"}
-      }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config":{
+            "distDir": "staticfiles_build"
+        }
+    }
     ],
     "routes": [
       {
         "src": "/(.*)",
         "dest": "ADD/wsgi.py"
-      }
+      },
+      {
+        "src": "/(.*)",
+        "dest": "Django_RestAPI/wsgi.py"
+    }
     ]
 }
