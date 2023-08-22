@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--c7+$_1@d(p7b$$-=iklps7jr^m^wypp2r_vnx8+r1qt(x+4zs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'authSys',
-    'rest_framework'
+    'rest_framework',
+    'djoser',
+    'phonenumbers'
 ]
 
 MIDDLEWARE = [
@@ -76,26 +78,38 @@ WSGI_APPLICATION = 'ADD.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 import os
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': "postgresql://postgres:Sn1nj9cXyQFSFfHY8I2r@containers-us-west-207.railway.app:6129/railway",
-        'NAME': "railway",
-        'USER': "postgres",
-        'PASSWORD': "Sn1nj9cXyQFSFfHY8I2r",
-        'HOST': "containers-us-west-207.railway.app",
-        'PORT': 6129,
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': "postgresql://postgres:Sn1nj9cXyQFSFfHY8I2r@containers-us-west-207.railway.app:6129/railway",
+#         'NAME': "railway",
+#         'USER': "postgres",
+#         'PASSWORD': "Sn1nj9cXyQFSFfHY8I2r",
+#         'HOST': "containers-us-west-207.railway.app",
+#         'PORT': 6129,
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': "postgres://default:e9BIPzsjE6Oq@ep-quiet-shadow-16202443-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",
+#         'NAME': "verceldb",
+#         'USER': "default",
+#         'PASSWORD': "e9BIPzsjE6Oq",
+#         'HOST': "ep-quiet-shadow-16202443-pooler.us-east-1.postgres.vercel-storage.com",
+#         # 'PORT': 6129,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -137,7 +151,30 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' : [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL' : 'password-reset/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL' : True,
+    'ACTIVATION_URL' : 'activation/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE' : True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'TOKEN_MODEL': None,
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "authSys.UserAccount"
