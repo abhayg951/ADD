@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'authSys',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -74,26 +76,26 @@ WSGI_APPLICATION = 'ADD.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 import os
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': "postgresql://postgres:Sn1nj9cXyQFSFfHY8I2r@containers-us-west-207.railway.app:6129/railway",
-        'NAME': "railway",
-        'USER': "postgres",
-        'PASSWORD': "Sn1nj9cXyQFSFfHY8I2r",
-        'HOST': "containers-us-west-207.railway.app",
-        'PORT': 6129,
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': "postgresql://postgres:Sn1nj9cXyQFSFfHY8I2r@containers-us-west-207.railway.app:6129/railway",
+#         'NAME': "railway",
+#         'USER': "postgres",
+#         'PASSWORD': "Sn1nj9cXyQFSFfHY8I2r",
+#         'HOST': "containers-us-west-207.railway.app",
+#         'PORT': 6129,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
