@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-# from dotenv import load_dotenv
-
-# load_dotenv
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,11 +105,11 @@ WSGI_APPLICATION = 'ADD.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': "postgres://default:e9BIPzsjE6Oq@ep-quiet-shadow-16202443-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",
-        'NAME': "verceldb",
-        'USER': "default",
-        'PASSWORD': "e9BIPzsjE6Oq",
-        'HOST': "ep-quiet-shadow-16202443-pooler.us-east-1.postgres.vercel-storage.com",
+        'URL': os.getenv('POSTGRES_URL'),
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
         # 'PORT': 6129,
     }
 }
