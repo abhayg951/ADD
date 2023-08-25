@@ -16,7 +16,6 @@ class UserAuthManager(BaseUserManager):
             **kwargs
         )
         user.set_password(password)
-        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -51,7 +50,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     objects = UserAuthManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'address', "mobile_number"]
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
         return self.email
