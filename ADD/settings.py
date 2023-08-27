@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     'authSys',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'djoser',
     'phonenumbers'
 ]
@@ -189,6 +190,9 @@ DJOSER = {
     'TOKEN_MODEL': None,
 }
 
+# SIMPLE_JWT = {
+#     'BLACKLIST_AFTER_ROTATION' : False
+# }
 
 
 BLACKLIST_AFTER_ROTATION = False
