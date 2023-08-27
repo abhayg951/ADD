@@ -189,6 +189,11 @@ DJOSER = {
     'TOKEN_MODEL': None,
 }
 
+
+
+BLACKLIST_AFTER_ROTATION = False
+
+
 # Authentication cookies
 AUTH_COOKIE = 'access'  # jwt access token will act as auth cookie
 AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 5 # this means that access token will automatically expire in 5 min
